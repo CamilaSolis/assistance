@@ -1,0 +1,37 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 80px;
+}
+
+.App-header {
+  background-color: #f9a91a;
+  height: 100px;
+  padding: 20px;
+  color: #f9a91a;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.pass{
+  text-align: center;
+  height: 30px;
+  width: 300px;
+  font-size: 25px;
+  margin-top: 15px;
+}
+
+.enter{
+  margin-top: 10px;
+  font-size: 16px;
+  height: 35px;
+  width: 305px;
+  background-color: #333;
+  color: #f9a91a;
+  border: none;
+  border-radius: 2px;
+}
