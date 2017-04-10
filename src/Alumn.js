@@ -1,5 +1,3 @@
-import React, {Component} from 'react';
-
 const students = [{
 	clave: 'ecscl20162381',
 	name: 'Camila Solis',
@@ -10,4 +8,4 @@ const students = [{
 	rut:83717211
 }]
 
-export default Alumn;
+export default students;
