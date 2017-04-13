@@ -1,40 +1,48 @@
-import React, { Component } from 'react';
-import Value from './Value';
+import React from 'react';
+//import Value from './Value';
 import SweetAlert from 'sweetalert-react';
 import 'sweetalert/dist/sweetalert.css';
 import logo from './logo.svg';
 import students from './Alumn';
 import './App.css';
 
-class App extends Component {
+class App extends React.Component {
 
-  constructor(){
+  constructor () {
     super();
-    this.state={
-      code:''
+
+    this.state = {
+      code: '',
+      name: '',
+      valid: false,
+      invalid: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
-  handleChange(event) {
-    this.setState({code: event.target.value});
+  handleChange (event) {
+    this.setState({ code: event.target.value });
   }
 
-  handleSubmit(event) {
-
+  handleSubmit (event) {
     event.preventDefault();
-    const nom = (codigo) => {
-      return students.map((item, indice) => {
-        return (item.clave == codigo ? item.name : null)})
+    const nom = (codigo) => students.filter((item, indice) => (item.clave === codigo))
+    const { name } = (nom(this.state.code).length > 0) ? nom(this.state.code)[0] : ''
+    if (typeof name === 'undefined') {
+      this.setState({
+        invalid: true
+      })
+    } else {
+      this.setState({
+        name,
+        valid: true
+      })
     }
-
-    //alert('¡Bienvenida: ' + nom(this.state.code).join('') + '!');
   }
 
-  render() {
+  render () {
     return (
       <div className="App">
         <div className="App-header">
@@ -44,13 +52,19 @@ class App extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="bv">Ingresa tu código</div>
           <input type="text" value={this.state.code} onChange={this.handleChange} className="pass" /><br />
-          <button type="submit" className="enter" onClick={() => this.setState({ show: true })}>ENTER</button>
+          <button type="submit" className="enter">ENTER</button>
         </form>
         <SweetAlert
-        show={this.state.show}
-        title="Hola"
-        text="oli"
-        onConfirm={() => this.setState({ show: false })}
+          show={this.state.valid}
+          title="Hola"
+          text={`Bienvenida, ${this.state.name}`}
+          onConfirm={() => this.setState({ valid: false })}
+        />
+        <SweetAlert
+          show={this.state.invalid}
+          title="Hola"
+          text="No existes en el sistema, largo de aquí"
+          onConfirm={() => this.setState({ invalid: false })}
         />
       </div>
     )

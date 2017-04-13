@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Alumn from './Alumn';
 
 class Value extends React.Component {
